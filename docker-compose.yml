@@ -30,7 +30,7 @@ services:
             - bitrix
         restart: always
     mysql:
-        build: ./mysql
+        build: ./${MYSQL_VERSION}
         container_name: mysql
         volumes_from:
             - source
