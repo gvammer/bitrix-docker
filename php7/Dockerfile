@@ -12,3 +12,4 @@ RUN usermod -u 1000 www-data
 WORKDIR "/var/www/bitrix"
 
 EXPOSE 9000
+
