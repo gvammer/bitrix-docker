@@ -14,7 +14,7 @@ VOLUME ["site-backup:/var/backup"]
 # ADD my.cnf /etc/mysql/conf.d/my.cnf
 ENV MYSQL_ALLOW_EMPTY_PASSWORD=yes
 #  NFS_VOL_NAME=node1.db.prod.backup.ru.mgo.su:/var/backup/site NFS_LOCAL_MNT=/var/dumps
-ADD bootstrap.sh /docker-entrypoint-initdb.d/bootstrap.sh
+#ADD bootstrap.sh /docker-entrypoint-initdb.d/bootstrap.sh
 # CMD ["mysqld"]
 #CMD ["bootstrap.sh"]
 EXPOSE 3306

@@ -22,11 +22,13 @@ services:
         volumes_from:
             - source
         ports:
-            - '${INTERFACE}:80:80'
-            - '${INTERFACE}:443:443'
+            - '${INTERFACE}:8080:80'
+            - '${INTERFACE}:80443:443'
+        environment:
+            - VIRTUAL_HOST=${LOCALHOST_ADDR}
         links:
             - php
-        networks: 
+        networks:
             - bitrix
         restart: always
     mysql:
@@ -35,7 +37,7 @@ services:
         volumes_from:
             - source
         ports:
-            - '${INTERFACE}:3306:3306'
+            - '${INTERFACE}:13306:3306'
         environment:
             MYSQL_DATABASE: ${MYSQL_DATABASE}
             MYSQL_USER: ${MYSQL_USER}
@@ -65,15 +67,13 @@ services:
             - ./logs/memcached:/var/log/memcached
             - ./data/mysql:/var/lib/mysql
             - ./data/memcached:/var/lib/memcached
-            - ./www/html:/var/www/html
-            - ${SITE_PATH}:/var/www/bitrix
-            - /etc/localtime:/etc/localtime/:ro
+            - ${SITE_PATH}:/var/www/
+            - ${BITRIX_PATH}:/var/www/bitrix
+            - ${SITE_PATH}/bitrix/.settings.php:/var/www/bitrix/.settings.php
+            - ${SITE_PATH}/bitrix/php_interface/:/var/www/bitrix/php_interface/
+        #            - /etc/localtime:/etc/localtime/:ro
         networks:
             - bitrix
 networks:
     bitrix:
         driver: bridge
-        ipam:
-            driver: default
-            config:
-                - subnet: 10.100.0.0/24
