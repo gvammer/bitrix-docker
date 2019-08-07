@@ -68,8 +68,8 @@ services:
             - ./data/mysql:/var/lib/mysql
             - ./data/memcached:/var/lib/memcached
             - ${SITE_PATH}:/var/www/
-            - ../../empty/vendor:/var/www/vendor
             - ${BITRIX_PATH}:/var/www/bitrix
+            - ${VENDOR_PATH}:/var/www/vendor
             - ${SITE_PATH}/bitrix/.settings.php:/var/www/bitrix/.settings.php
             - ${SITE_PATH}/bitrix/php_interface/:/var/www/bitrix/php_interface/
         #            - /etc/localtime:/etc/localtime/:ro
